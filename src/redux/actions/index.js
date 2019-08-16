@@ -10,8 +10,14 @@ export function addToDo(title) {
     };
 }
 
-export function loadToDoList() {
+export function checkToken() {
     return {
-        type: types.LOAD_TODO_LIST
+        type: types.CHECK_TOKEN
+    };
+}
+
+export function getToken() {
+    return {
+        type: types.GET_TOKEN
     };
 }
