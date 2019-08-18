@@ -9,6 +9,8 @@ import { checkToken } from './redux/actions';
 import spotiFinder from './redux/reducers';
 import rootSaga from './sagas';
 
+// import store from './redux/store'
+
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(spotiFinder, applyMiddleware(sagaMiddleware));
