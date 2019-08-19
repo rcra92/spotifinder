@@ -30,15 +30,13 @@ class Chart extends Component {
   render() {
     if (_.isEmpty(this.props.albums)) return <div />
     return (
-      <BarChart width={800} height={500} data={this.props.albums} margin={{
-          top: 50, right: 30, left: 20, bottom: 5,
-          }} >
+      <BarChart width={800} height={500} data={this.props.albums} >
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Legend />
         {this.renderBars()}
-        <Brush data={this.props.albums} startIndex={Math.floor(this.props.albums.length / 4)}/>
+        <Brush data={this.props.albums} startIndex={Math.floor(this.props.albums.length / 2)}/>
         <ReferenceArea layout={'vertical'} x1={this.props.selectedYears.current} x2={this.props.selectedYears.hasNext}>
           <Label value="Atual" position="top" />
         </ReferenceArea>

@@ -49,7 +49,7 @@ function shiftPosition (action, state, current) {
         hasPrevious = state.releaseYears[index]
         index = index - 1
         if (index > 0) {
-            hasNext = state.releaseYears[index + 1]
+            hasNext = state.releaseYears[index - 1]
         } else {
             hasNext = null
         }

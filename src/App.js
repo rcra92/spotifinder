@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 import Artists from './containers/dropdown';
 
@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <Row>
+        <Row className="justify-content-around">
           <Artists />
           <YearSelector />
         </Row>
