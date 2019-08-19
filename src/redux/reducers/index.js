@@ -5,6 +5,7 @@ const initialState = {
     toDoList: [],
     artist: null,
     albums: [],
+    album: null,
     releaseYears: [],
     selectedYears: {
         hasPrevious: null,
@@ -14,7 +15,6 @@ const initialState = {
 };
 
 function buildBody (albums) {
-    console.log('albums', albums)
 
     let response = []
     let tmp = 0
@@ -26,9 +26,7 @@ function buildBody (albums) {
         if (release === tmp) {
             key = key + 1
             if (perYear < key) perYear = key
-            let previous = index - 1
             let auxIndex = response.findIndex(obj => obj.name === tmp)
-            console.log('operation', index, response[auxIndex])
             response[auxIndex][`album${key}`] = album.total_tracks
             response[auxIndex][`title${key}`] = album.name
         } else {
@@ -39,15 +37,11 @@ function buildBody (albums) {
         }
         tmp = release
     })
-    // for (let i = 0; i<2019; i = i+1) {
-    //     tmp.push({ name: i, uv: 400, pv: 1000, amt: 3000 }) 
-    // }
-    console.log('>>>>', response)
+    
     return { response, albumsPerYear: perYear, releaseYears: releaseYears }
 }
 
 function shiftPosition (action, state, current) {
-    console.log('>>>>>>>', action, state, current)
     let index = state.releaseYears.findIndex(arr => arr === current)
     let hasNext = state.selectedYears.hasNext
     let hasPrevious = state.selectedYears.hasPrevious
@@ -69,15 +63,6 @@ function shiftPosition (action, state, current) {
         }
     }
 
-    // if (index === 0) {
-    //     hasNext = state.releaseYears[index - 1]
-
-    // } else if (index < (state.releaseYears.length - 1)) {
-    //     hasPrevious = state.releaseYears[index + 1]
-    //     hasNext = state.releaseYears[index - 1]
-    // }
-
-    console.log('---- index', index, state.releaseYears[index])
     return {current: state.releaseYears[index], hasPrevious: hasPrevious, hasNext: hasNext }
 }
 
@@ -116,8 +101,9 @@ export default function spotiFinder(state = initialState, action) {
             return { ...state, selectedYears: shiftPosition('increment', state, action.currentYear)}
         case types.DECREMENT_YEAR:
             return { ...state, selectedYears: shiftPosition('decrement', state, action.currentYear)}
+        case types.FETCH_ALBUM_SUCCESS:
+            return { ...state, album: action.payload }
         default:
-        console.log('----- REDUCER -----', action)
             return state;
     }
 }

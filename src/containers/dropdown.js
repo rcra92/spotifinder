@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
-import {DropdownMultiple, Dropdown} from 'reactjs-dropdown-component';
+import { Dropdown } from 'reactjs-dropdown-component';
 import { fetchArtist } from '../redux/actions'
 
 class Artists extends Component {
@@ -49,7 +46,6 @@ class Artists extends Component {
   }
 
   resetThenSet = (id, key) => {
-    console.log('-----', id, key)
     let temp = JSON.parse(JSON.stringify(this.state.location));
     temp.forEach(item => item.selected = false);
     temp[id].selected = true;
@@ -57,11 +53,9 @@ class Artists extends Component {
       location: temp
     });
     this.props.fetchArtist(temp[id].key)
-    console.log(':::::', this)
   }
 
   render() {
-    console.log(this)
     return (
       <Dropdown
         title="Select band"
@@ -80,4 +74,4 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ fetchArtist }, dispatch);
 
-export default connect(mapStateToProps, { fetchArtist })(Artists)
+export default connect(mapStateToProps, mapDispatchToProps)(Artists)

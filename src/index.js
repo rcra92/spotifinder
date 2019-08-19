@@ -5,19 +5,15 @@ import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 import App from './App';
-import { checkToken } from './redux/actions';
+import Search from './search';
 import spotiFinder from './redux/reducers';
 import rootSaga from './sagas';
-
-// import store from './redux/store'
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(spotiFinder, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(rootSaga);
-
-store.dispatch(checkToken());
 
 render(
     <Provider store={store}>
