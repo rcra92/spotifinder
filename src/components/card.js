@@ -6,9 +6,7 @@ export default class CustomCard extends Component {
     return (
       <Card style={{ width: '18rem' }}>
         <Card.Body>
-          <Row>
-            <Card.Title>{this.props.order}</Card.Title>
-          </Row>
+          <Card.Title>{this.props.order}</Card.Title>
           <Card.Text>
             {this.props.name}
           </Card.Text>

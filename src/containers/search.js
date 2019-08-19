@@ -4,10 +4,9 @@ import { bindActionCreators } from 'redux'
 import {Container, Row} from 'react-bootstrap';
 import _ from 'lodash'
 
-import CustomCard from './components/card'
+import CustomCard from '../components/card'
 
-
-import { fetchAlbumInfo } from './redux/actions'
+import { fetchAlbumInfo } from '../redux/actions'
 
 class Search extends Component {
   constructor(props) {

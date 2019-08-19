@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
+import { Link, withRouter } from 'react-router-dom';
 import _ from 'lodash'
 
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ReferenceArea, Brush, Label } from 'recharts';
@@ -17,11 +18,15 @@ class Chart extends Component {
     return null
   }
 
+  handleClick () {
+    return null
+  }
+
   renderBars () {
     let bars = []
     for (let i = 0; i < this.props.albumsPerYear; i++) {
       bars.push(
-        <Bar dataKey={`album${i+1}`} fill="#8884d8" />
+        <Bar onClick={() => this.props.history.push('/album')} dataKey={`album${i+1}`} fill="#8884d8" />
       )
     }
     return bars
@@ -56,4 +61,4 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ fetchArtist }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Chart)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Chart))

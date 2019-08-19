@@ -2,23 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Container, Row, Col } from 'react-bootstrap';
 
-import Artists from './containers/dropdown';
-
-import Chart from './containers/charts'
-
-import YearSelector from './containers/yearSelector'
+import Home from './components/home';
+import Search from './containers/search';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
 
   render() {
     return (
       <Container>
-        <Row className="justify-content-around">
-          <Artists />
-          <YearSelector />
-        </Row>
-        <Chart />
-
+        <Route exact path="/" component={Home} />
+        <Route exact path="/album" component={Search} />
       </Container>
     );
   }
