@@ -56,8 +56,8 @@ class Chart extends Component {
         <Tooltip />
         <Legend />
         {this.renderBars()}
-        <Brush data={this.props.albums} startIndex={15}/>
-        <ReferenceArea layout={'vertical'} x1={2017} x2={null}>
+        <Brush data={this.props.albums} startIndex={Math.floor(this.props.albums.length / 4)}/>
+        <ReferenceArea layout={'vertical'} x1={this.props.selectedYears.current} x2={this.props.selectedYears.hasNext}>
           <Label value="Atual" position="top" />
         </ReferenceArea>
       </BarChart>
@@ -70,7 +70,7 @@ const mapStateToProps = (state) => {
   return {
     albums: state.albums,
     albumsPerYear: state.albumsPerYear,
-    releaseYears: state.releaseYears
+    selectedYears: state.selectedYears
   }
 }
 

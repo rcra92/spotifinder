@@ -37,3 +37,17 @@ export function fetchArtist(artist) {
         artist: artist
     }
 }
+
+export function incrementYear(current) {
+    return {
+        type: types.INCREMENT_YEAR,
+        currentYear: current
+    }
+}
+
+export function decrementYear(current) {
+    return {
+        type: types.DECREMENT_YEAR,
+        currentYear: current
+    }
+}

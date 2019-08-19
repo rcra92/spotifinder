@@ -36,8 +36,11 @@ class App extends Component {
           </Col>
         </Row>
 
-        <Artists />
-        <YearSelector />
+        <Row className="row">
+          <Artists />
+          <YearSelector />
+        </Row>
+
         <Chart />
 
       </Container>
